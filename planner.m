@@ -9,7 +9,7 @@ initial_loc = [-0.8, -0.6, 0];
 psi_primitives = [0, 30, -30, 60, -60];%15, 15, -30, 30, -45, 45, -60, 60]; % degrees
 obstacles = [[0.1, -0.15, 0.45]; [0.1, 0.7, 0.1]; [0.1, -0.5, -0.6]]; % [r xc yc]
 xo = 0.5; yo = 0.8;
-step_size=1;
+step_size=0.5;
 v = 1;
 tspan = [0 0.2];
 max_disturbance = 0.03;
