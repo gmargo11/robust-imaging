@@ -1,0 +1,25 @@
+clear all;
+close all;
+
+psi_primitives = [-60, -30, 0, 30, 60]; % degrees
+obstacles = [[0.1, 0.15, 0.3]; [0.1, 0.7, 0.3]]; % (r xc yc)
+tf = 1; y0 = [0, 0, 0]; v=1; psi_des=0;
+xo = 0.5; yo = 0.5;
+
+safe_commands = [];
+for psi = psi_primitives
+    safe = true;
+    for obstacle = obstacles.'
+        [result, safetyCert] = barrier_safety_verification(tf, y0, v, psi_des, xo, yo, obstacle);
+        if result.problem ~= 0
+            safe = false;
+            obstacle
+            psi
+        end
+    end
+    if safe
+        safe_commands = cat(safe_commands, psi);
+    end
+end
+
+safe_commands
